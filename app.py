@@ -16,6 +16,16 @@ class Task(db.Model):
 
 db.create_all()
 
+# class Task(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     description = db.Column(db.String(255), nullable=False)
+#     completed = db.Column(db.Boolean, default=False)
+#     progress = db.Column(db.Integer, default=0)
+#  #  ** Apply database migrations to create the new column **
+#  #  bash
+# flask db.migrate
+# flask db.upgrade
+
 @app.route('/')
 def index():
     tasks = Task.query.order_by(Task.completed).all()
@@ -52,6 +62,14 @@ def delete_task(task_id):
     db.session.delete(task)
     db.session.commit()
     return redirect(url_for('index'))
+
+# @app.route('/update_progress/<int:task_id>', methods=['POST'])
+# def update_progress(task_id):
+#     task = Task.query.get_or_404(task_id)
+#     new_progress = request.form['progress']
+#     task.progress = new_progress
+#     db.session.commit()
+#     return redirect(url_for('index'))
 
 if __name__ == '__main__':
     with app.app_context():  # Ensure context is active within the main block

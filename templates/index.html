@@ -15,7 +15,8 @@
         <li>
             <input type="checkbox" name="completed" onchange="window.location.href='/toggle_task/{{ task.id }}'" {{ 'checked' if task.completed else '' }}>
             <span>{{ task.description }}</span>
-            <progress value="{{ task.progress }}" max="100"></progress>  <a href="/edit_task/{{ task.id }}">Edit</a>
+            <progress value="{{ task.progress }}" max="100"></progress>  
+            <a href="/edit_task/{{ task.id }}">Edit</a>
             <a href="/delete_task/{{ task.id }}">Delete</a>
         </li>
         {% endfor %}  </ul>
